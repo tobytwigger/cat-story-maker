@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+    base: 'cat-story-maker/',
     server: {
         host: true,
         port: 8000, // This is the port which we will use in docker
