@@ -19,22 +19,22 @@
                   <NewCatDetails @catAdded="appendCat"></NewCatDetails>
               </VModal>
           </span>
-            <div class="flex flex-row">
-                <VModal :header="editCatModalHeader" ref="editCatModal">
-                    <template #activator="{show}">
-                        <button type="button"
-                                v-for="(cat, index) in dynamicCats"
-                                @click="showEditCatModal(cat, index, show)"
-                                :key="index"
-                                class="text-xs text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
-                            {{ cat.name }}
-                        </button>
-                    </template>
-                    <NewCatDetails @catAdded="editCat" :pre-info="editingCat"></NewCatDetails>
-                </VModal>
+<!--            <div class="flex flex-row">-->
+<!--                <VModal :header="editCatModalHeader" ref="editCatModal">-->
+<!--                    <template #activator="{show}">-->
+<!--                        <button type="button"-->
+<!--                                v-for="(cat, index) in dynamicCats"-->
+<!--                                @click="showEditCatModal(cat, index, show)"-->
+<!--                                :key="index"-->
+<!--                                class="text-xs text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">-->
+<!--                            {{ cat.name }}-->
+<!--                        </button>-->
+<!--                    </template>-->
+<!--                    <NewCatDetails @catAdded="editCat" :pre-info="editingCat"></NewCatDetails>-->
+<!--                </VModal>-->
 
 
-            </div>
+<!--            </div>-->
         </div>
 
     </StepItem>
@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import StepItem from '@/components/atoms/StepItem.vue'
 import CatIcon from '@/components/icons/CatIcon.vue'
-import {TCatInfo} from "@/types/maker";
+import type {TCatInfo} from "@/types/maker";
 import {ref, defineProps, computed} from "vue";
 import VModal from "@/components/atoms/VModal.vue";
 import NewCatDetails from "@/components/molecules/NewCatDetails.vue";

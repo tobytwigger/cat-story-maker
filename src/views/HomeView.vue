@@ -2,7 +2,7 @@
 
 import SetupCats from '@/components/SetupCats.vue'
 import {ref} from "vue";
-import {TCatInfo} from "@/types/maker";
+import type {TCatInfo} from "@/types/maker";
 import GenerateStory from "@/components/GenerateStory.vue";
 
 const cats = ref<TCatInfo[]>([{

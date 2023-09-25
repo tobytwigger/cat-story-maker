@@ -1,5 +1,5 @@
 import {ref} from "vue";
-import {TCatInfo} from "@/types/maker";
+import type {TCatInfo} from "@/types/maker";
 import TStory from "@/ai/TStory";
 
 const stories = ref<TStory[]>([]);
@@ -11,7 +11,7 @@ const stories = ref<TStory[]>([]);
  */
 const newStory = (catInfo: TCatInfo): number => {
     const story: TStory = new TStory(catInfo);
-    story.generate();
+    story.send();
     return (stories.value.push(story) - 1);
 };
 

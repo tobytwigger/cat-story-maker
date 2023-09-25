@@ -1,19 +1,22 @@
 import OpenAI from "openai/index";
-import {ChatCompletionMessageParam} from "openai/resources/chat/index.js";
-import {TCatInfo} from "@/types/maker";
+import type {ChatCompletionMessageParam} from "openai/resources/chat/index.js";
+import type {TCatInfo} from "@/types/maker";
+import type {Ref, UnwrapRef} from "vue";
+import {ref} from "vue";
 
 export default class TStoryResponse {
     catInfo: TCatInfo;
 
-    loading: boolean = false;
+    loading: Ref<UnwrapRef<boolean>>;
 
     openai: OpenAI;
 
-    story: string|null = null;
+    story: Ref<UnwrapRef<string | null>>;
 
     constructor(catInfo: TCatInfo) {
         this.catInfo = catInfo;
-        console.log(import.meta.env.VITE_OPEN_AI_KEY);
+        this.story = ref<string|null>(null);
+        this.loading = ref<boolean>(false);
         this.openai = new OpenAI({
             apiKey: import.meta.env.VITE_OPEN_AI_KEY,
             baseURL: 'https://api.nova-oss.com/v1',
@@ -22,7 +25,7 @@ export default class TStoryResponse {
     }
 
     generateMessages(): Array<ChatCompletionMessageParam> {
-        const m = [];
+        const m: Array<ChatCompletionMessageParam> = [];
 
         // Tell the system to adopt a persona
         m.push({
@@ -107,12 +110,12 @@ export default class TStoryResponse {
         return m;
     }
 
-    async generate (catInfo: TCatInfo) {
-        if(this.loading) {
+    async generate () {
+        if(this.loading.value) {
             return;
         }
 
-        this.loading = true;
+        this.loading.value = true;
         const stream = await this.openai.chat.completions.create({
             model: 'gpt-4',
             messages: this.generateMessages(),
@@ -120,12 +123,12 @@ export default class TStoryResponse {
         });
         for await (const part of stream) {
             const text = part.choices[0]?.delta?.content || '';
-            if (this.story === null) {
-                this.story = text;
+            if (this.story.value === null) {
+                this.story.value = text;
             } else {
-                this.story += text;
+                this.story.value += text;
             }
         }
-        this.loading = false;
+        this.loading.value = false;
     }
 }

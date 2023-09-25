@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "install-docker": "docker exec -it vite_docker sh -c \"npm install\"",
+    "build-docker": "docker exec -it vite_docker sh -c \"npm run build\"",
+    "dev-docker": "docker exec -it vite_docker sh -c \"npm run dev\"",
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",

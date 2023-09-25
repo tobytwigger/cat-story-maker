@@ -13,6 +13,7 @@ import {computed, defineProps, defineEmits} from "vue";
 import VCarousel from "@/components/atoms/VCarousel.vue";
 import {CarouselItem} from "@/types/carousel";
 import TStory from "@/ai/TStory";
+import TStoryResponse from "@/ai/TStoryResponse";
 
 const props = defineProps<{
     stories: TStory[],
@@ -22,9 +23,9 @@ const props = defineProps<{
 const items = computed<CarouselItem[]>(() => {
     return props.stories
       .map((s: TStory): CarouselItem => {
-          let response = s.responses[s.responses.length - 1];
+          let response: TStoryResponse|undefined = s.responses[s.responses.length - 1];
           return {
-              text: response.story ?? ''
+              text: response?.story ?? ''
           };
       })
       .filter((s: CarouselItem): boolean => {

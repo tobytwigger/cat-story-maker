@@ -77,7 +77,7 @@
 
 <script setup lang="ts">
 import {computed, defineEmits, ref, defineProps, onMounted, watch} from 'vue';
-import {TCatInfo} from "@/types/maker";
+import type {TCatInfo} from "@/types/maker";
 import VModal from "@/components/atoms/VModal.vue";
 import VMultiLineTextArea from "@/components/atoms/VMultiLineTextArea.vue";
 
