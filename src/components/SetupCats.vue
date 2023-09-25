@@ -44,10 +44,9 @@
 import StepItem from '@/components/atoms/StepItem.vue'
 import CatIcon from '@/components/icons/CatIcon.vue'
 import type {TCatInfo} from "@/types/maker";
-import {ref, defineProps, computed} from "vue";
+import {ref, defineProps, computed, defineEmits} from "vue";
 import VModal from "@/components/atoms/VModal.vue";
 import NewCatDetails from "@/components/molecules/NewCatDetails.vue";
-import {defineEmits} from "vue/dist/vue";
 import PlusIcon from "@/components/icons/PlusIcon.vue";
 import VCarousel from "@/components/atoms/VCarousel.vue";
 
